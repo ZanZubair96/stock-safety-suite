@@ -26,28 +26,40 @@ const PricingCard: React.FC<PricingCardProps> = ({
   isPopular = false,
 }) => {
   return (
-    <div className={`pricing-card ${isPopular ? 'border-halal-green-dark border-2 relative' : ''}`}>
+    <div className={`relative group transition-all duration-300 hover:scale-105 ${
+      isPopular 
+        ? 'bg-gradient-to-br from-halal-blue-dark to-halal-blue text-white' 
+        : 'bg-gradient-to-br from-white to-gray-50/90 text-gray-900'
+    } rounded-2xl p-8 shadow-lg border border-gray-100/50 backdrop-blur-sm`}>
       {isPopular && (
-        <div className="absolute top-0 right-0 transform translate-x-2 -translate-y-2 bg-halal-green text-white text-xs font-semibold py-1 px-3 rounded-full">
+        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-halal-green text-white text-sm font-semibold py-2 px-4 rounded-full shadow-lg">
           Most Popular
         </div>
       )}
       
-      <h3 className="font-heading font-bold text-xl mb-2">{title}</h3>
+      <h3 className="font-heading font-bold text-2xl mb-2">{title}</h3>
       <div className="mb-4">
-        <span className="text-3xl font-bold">{price}</span>
-        {price !== 'Free' && <span className="text-gray-600 ml-1">/mo</span>}
+        <span className="text-4xl font-bold">{price}</span>
+        {price !== 'Free' && <span className={`${isPopular ? 'text-white/80' : 'text-gray-600'} ml-1`}>/mo</span>}
       </div>
-      <p className="text-gray-600 mb-6">{description}</p>
+      <p className={`${isPopular ? 'text-white/80' : 'text-gray-600'} mb-8`}>{description}</p>
       
       <div className="flex-grow">
-        <ul className="space-y-3 mb-6">
+        <ul className="space-y-4 mb-8">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-start">
-              <span className={`mr-2 mt-1 ${feature.included ? 'text-halal-green' : 'text-gray-400'}`}>
+            <li key={index} className="flex items-start gap-3">
+              <span className={`mt-1 ${
+                feature.included 
+                  ? isPopular ? 'text-halal-green-light' : 'text-halal-green' 
+                  : isPopular ? 'text-white/40' : 'text-gray-400'
+              }`}>
                 <Check size={16} />
               </span>
-              <span className={feature.included ? 'text-gray-700' : 'text-gray-400'}>
+              <span className={`${
+                feature.included 
+                  ? isPopular ? 'text-white' : 'text-gray-700' 
+                  : isPopular ? 'text-white/40' : 'text-gray-400'
+              }`}>
                 {feature.text}
               </span>
             </li>
@@ -56,7 +68,11 @@ const PricingCard: React.FC<PricingCardProps> = ({
       </div>
       
       <Button 
-        className={isPopular ? 'bg-halal-green hover:bg-halal-green-dark w-full' : 'bg-halal-blue hover:bg-halal-blue-dark w-full'}
+        className={`w-full py-6 ${
+          isPopular 
+            ? 'bg-white text-halal-blue-dark hover:bg-gray-100' 
+            : 'bg-halal-blue text-white hover:bg-halal-blue-dark'
+        }`}
       >
         {buttonText}
       </Button>

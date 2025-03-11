@@ -18,13 +18,17 @@ interface FAQAccordionProps {
 
 const FAQAccordion: React.FC<FAQAccordionProps> = ({ items }) => {
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion type="single" collapsible className="w-full space-y-4">
       {items.map((item, index) => (
-        <AccordionItem key={index} value={`item-${index}`} className="border-b border-gray-200">
-          <AccordionTrigger className="text-left font-heading text-lg hover:text-halal-blue py-4">
+        <AccordionItem 
+          key={index} 
+          value={`item-${index}`} 
+          className="border border-gray-100 rounded-xl bg-white shadow-sm px-6"
+        >
+          <AccordionTrigger className="text-left font-heading text-lg hover:text-halal-blue [&[data-state=open]]:text-halal-blue py-6">
             {item.question}
           </AccordionTrigger>
-          <AccordionContent className="text-gray-600 pb-4">
+          <AccordionContent className="text-gray-600 pb-6 leading-relaxed">
             {item.answer}
           </AccordionContent>
         </AccordionItem>
