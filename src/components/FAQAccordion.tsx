@@ -23,12 +23,12 @@ const FAQAccordion: React.FC<FAQAccordionProps> = ({ items }) => {
         <AccordionItem 
           key={index} 
           value={`item-${index}`} 
-          className="border border-gray-100 rounded-xl bg-white shadow-sm px-6"
+          className="group border border-gray-100 rounded-xl bg-white shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md"
         >
-          <AccordionTrigger className="text-left font-heading text-lg hover:text-halal-blue [&[data-state=open]]:text-halal-blue py-6">
+          <AccordionTrigger className="px-6 text-left font-heading text-lg hover:text-halal-blue data-[state=open]:text-halal-blue py-6 group-hover:bg-gray-50/50">
             {item.question}
           </AccordionTrigger>
-          <AccordionContent className="text-gray-600 pb-6 leading-relaxed">
+          <AccordionContent className="px-6 text-gray-600 pb-6 leading-relaxed">
             {item.answer}
           </AccordionContent>
         </AccordionItem>
